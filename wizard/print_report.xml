@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="print_appointment_form" model="ir.ui.view">
+         <field name="name">print.appointment.wizard</field>
+         <field name="model">print.appointment</field>
+         <field name="arch" type="xml">
+            <form string="Print Appointment">
+                <group>
+                    <field name="patient_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="print_appointment_wizard" string="Print Pdf" type="object" class="btn-primary"/>
+                    <button name="print_appointment_excel" string="Print Excel" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+         </field>
+     </record>
+
+    <record id="print_appointment" model="ir.actions.act_window">
+        <field name="name">Print Appointment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">print.appointment</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="print_appointment_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="lab_tree" model="ir.ui.view">
+        <field name="name">hospital.lab.tree</field>
+        <field name="model">hospital.lab</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="lab_no"/>
+                <field name="date"/>
+                <field name="amount"/>
+                <field name="doctor_id"/>
+                <field name="patient_id"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="lab_form" model="ir.ui.view">
+        <field name="name">hospital.lab.form</field>
+        <field name="model">hospital.lab</field>
+        <field name="arch" type="xml">
+            <form sample="1">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="lab_no"/>
+                            <field name="user_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="patient_id"/>
+                            <field name="doctor_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="lab_search" model="ir.ui.view">
+        <field name="name">hospital.lab.search</field>
+        <field name="model">hospital.lab</field>
+        <field name="arch" type="xml">
+            <search string="Labs">
+                <field name="lab_no"/>
+                <field name="date"/>
+                <field name="doctor_id"/>
+                <field name="patient_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Lab No." name="lab_no" context="{'group_by': 'lab_no'}"/>
+                    <filter string="Date" name="date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="lab_action" model="ir.actions.act_window">
+        <field name="name">Labs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.lab</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Enter your labs details!
+            </p>
+        </field>
+    </record>
+    <menuitem id="hospital_root"
+              name="Hospital"
+              sequence="10"/>
+
+    <menuitem id="hospital_lab_root"
+              name="Labs"
+              parent="hospital_root"
+              sequence="10"/>
+
+    <menuitem id="hospital_lab"
+              name="Labs"
+              parent="hospital_lab_root"
+              action="lab_action"
+              sequence="10"/>
+
+</odoo>

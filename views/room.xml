@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="room_tree" model="ir.ui.view">
+        <field name="name">hospital.room.tree</field>
+        <field name="model">hospital.room</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="room_id"/>
+                <field name="type"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="room_form" model="ir.ui.view">
+        <field name="name">hospital.room.form</field>
+        <field name="model">hospital.room</field>
+        <field name="arch" type="xml">
+            <form sample="1">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="room_id"/>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="room_search" model="ir.ui.view">
+        <field name="name">hospital.room.search</field>
+        <field name="model">hospital.room</field>
+        <field name="arch" type="xml">
+            <search string="Rooms">
+                <field name="room_id"/>
+                <field name="type"/>
+                <field name="status"/>
+                <group expand="0" string="Group By">
+                    <filter string="Room Type" name="type" context="{'group_by': 'type'}"/>
+                    <filter string="Room status" name="status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="room_action" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.room</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Enter your Rooms details!
+            </p>
+        </field>
+    </record>
+    <menuitem id="hospital_root"
+              name="Hospital"
+              sequence="10"/>
+
+    <menuitem id="hospital_room_root"
+              name="rooms"
+              parent="hospital_root"
+              action="room_action"
+              sequence="10"/>
+
+
+</odoo>

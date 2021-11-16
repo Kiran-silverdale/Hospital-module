@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="bill_tree" model="ir.ui.view">
+        <field name="name">hospital.bill.tree</field>
+        <field name="model">hospital.bill</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="bill_id"/>
+                <field name="date"/>
+                <field name="doc_charges"/>
+                <field name="room_charges"/>
+                <field name="No_of_days"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="bill_form" model="ir.ui.view">
+        <field name="name">hospital.bill.form</field>
+        <field name="model">hospital.bill</field>
+        <field name="arch" type="xml">
+            <form sample="1">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="bill_id"/>
+                            <field name="doc_charges"/>
+                            <field name="No_of_days"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="room_charges"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="bill_search" model="ir.ui.view">
+        <field name="name">hospital.bill.search</field>
+        <field name="model">hospital.bill</field>
+        <field name="arch" type="xml">
+            <search string="Bills">
+                <field name="date"/>
+                <field name="doc_charges"/>
+                <field name="room_charges"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Doctor Charges" name="doc_charges" context="{'group_by': 'doc_charges'}"/>
+                    <filter string="Room Charges" name="room_charges" context="{'group_by': 'room_charges'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="bill_action" model="ir.actions.act_window">
+        <field name="name">Bills</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.bill</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Here are the bills!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_root"
+              name="Hospital"
+              sequence="10"/>
+
+    <menuitem id="hospital_bill"
+              name="Bills"
+              parent="hospital_root"
+              action="bill_action"
+              sequence="10"/>
+
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_patient_appointments">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br></br>
+                        <t t-if="o.appointment_ids">
+                            <span>Appointment Details</span>
+                        </t>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left;">
+                                        <strong>Name</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Date</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Status</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Notes</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="counter" t-value="0"/>
+                                <t t-foreach="o.appointment_ids" t-as="a">
+                                    <t  t-set="counter" t-value="counter + 1"/>
+                                    <tr>
+                                        <td style="text-align:left;">
+                                            <t t-esc="a.name"/>
+                                        </td>
+                                        <td style="text-align:left;">
+                                            <t t-esc="a.appointment_date"/>
+                                        </td>
+                                        <td style="text-align:left;">
+                                            <span t-field="a.state"/>
+                                        </td>
+                                        <td style="text-align:left;">
+                                            <t t-esc="a.note"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="3">
+                                        <strong>Total Appointments</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="counter"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

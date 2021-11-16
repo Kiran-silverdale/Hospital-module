@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_patient_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br></br>
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-2" style="margin:auto;">
+                            </div>
+                            <center>
+                                <div class="col-xs-8" style="margin:auto">
+                                    <table class="table table-condensed" style="border: 3px solid black !important;">
+                                        <tr>
+                                            <td width="40%">
+                                                <p style="text-align:center;padding-top:10px;">
+                                                    <img t-if="not o.image"
+                                                         t-att-src="'/web/static/src/img/placeholder.png'" height="120"
+                                                         border="1" width="120"/>
+                                                    <img t-if="o.image"
+                                                         t-att-src="'data:image/png;base64,%s' % to_text(o.image)"
+                                                         height="120" border="1" width="120"/>
+                                                </p>
+                                            </td>
+                                            <td width="60%" style="text-align:center;">
+                                                <p>
+                                                    <h2>
+                                                        <strong>
+                                                            <span t-field="o.name"/>
+                                                        </strong>
+                                                    </h2>
+                                                </p>
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <p style="text-align:left;">
+                                                                <strong>Age</strong>
+                                                            </p>
+                                                            <p style="text-align:left;">
+                                                                <strong>Reference</strong>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p style="text-align:center;">
+                                                                <strong>:</strong>
+                                                            </p>
+                                                            <p style="text-align:center;">
+                                                                <strong>:</strong>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p style="text-align:left;padding-left:10px;"
+                                                               t-field="o.age"/>
+                                                            <p style="text-align:left;padding-left:10px;"
+                                                               t-field="o.patient_id"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </center>
+                        </div>
+                        <br></br>
+                        <t t-if="o.appointment_ids">
+                            <span>Appointment Details</span>
+                        </t>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left;">
+                                        <strong>Reference</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Date</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Status</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Notes</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="counter" t-value="0"/>
+                                <t t-foreach="o.appointment_ids" t-as="a">
+                                    <t  t-set="counter" t-value="counter + 1"/>
+                                    <tr>
+                                        <td style="text-align:left;">
+                                            <t t-esc="a.name"/>
+                                        </td>
+                                        <td style="text-align:left;">
+                                            <t t-esc="a.appointment_date"/>
+                                        </td>
+                                        <td style="text-align:left;">
+                                            <span t-field="a.state"/>
+                                        </td>
+                                        <td style="text-align:left;">
+                                            <t t-esc="a.note"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="3">
+                                        <strong>Total Appointments</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="counter"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

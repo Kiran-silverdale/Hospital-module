@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="email_form" model="ir.ui.view">
+        <field name="name">hospital.email.form</field>
+        <field name="model">hospital.email</field>
+        <field name="arch" type="xml">
+            <form sample="1">
+                <header>
+
+                </header>
+                <sheet>
+                    <group>
+                        <field name="patient_id" options="{'no_create':True}"/>
+                        <field name="receiver_id"/>
+                        <field name="sender_id"/>
+                        <button id="button_send_email" name="send_email" string="Send" type="object"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="email_action" model="ir.actions.act_window">
+        <field name="name">Email</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.email</field>
+        <field name="view_mode">form</field>
+    </record>
+
+
+    <menuitem id="hospital_email"
+              name="Send Email"
+              parent="hospital_root"
+              action="email_action"
+              sequence="10"/>
+
+</odoo>
