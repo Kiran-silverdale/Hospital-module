@@ -29,10 +29,6 @@
     </record>
 
 
-    <menuitem id="hospital_email"
-              name="Send Email"
-              parent="hospital_root"
-              action="email_action"
-              sequence="10"/>
+
 
 </odoo>

@@ -14,8 +14,7 @@
         'sale',
         'mail',
         'report_xlsx',
-        'website',
-        'board'
+        'website'
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -29,12 +28,14 @@
         'views/sales.xml',
         'views/doctor.xml',
         'views/lab.xml',
+        'views/lab_records.xml',
         'views/room.xml',
         'views/bill.xml',
         'views/template.xml',
         'views/appointment.xml',
-        'views/dashboard.xml',
-        'views/email.xml',
+        # 'views/dashboard.xml',
+        # 'views/email.xml',
+        'views/menu.xml',
         'report/patient_card.xml',
         'report/patient_appointments.xml',
         'report/patient_details.xml',

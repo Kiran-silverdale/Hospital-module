@@ -99,19 +99,5 @@
             </p>
         </field>
     </record>
-    <menuitem id="hospital_root"
-              name="Hospital"
-              sequence="10"/>
-
-    <menuitem id="hospital_doctor_root"
-              name="Doctors"
-              parent="hospital_root"
-              sequence="10"/>
-
-    <menuitem id="hospital_doctor"
-              name="Doctors"
-              parent="hospital_doctor_root"
-              action="doctor_action"
-              sequence="10"/>
 
 </odoo>

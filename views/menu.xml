@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="hospital_root"
+              name="Hospital"
+              sequence="10"
+              web_icon="hospital,static/description/icon.png"
+    />
+
+    <!--    <menuitem-->
+    <!--            name="Dashboard"-->
+    <!--            parent="hospital.hospital_root"-->
+    <!--            action="hospital_dashboard"-->
+    <!--            sequence="1"-->
+    <!--            id="menu_dashboard"/>-->
+
+    <menuitem id="hospital_doctor"
+              name="Doctor"
+              parent="hospital.hospital_root"
+              action="doctor_action"
+              sequence="10"/>
+
+    <menuitem id="hospital_patient"
+              name="Patient"
+              parent="hospital.hospital_root"
+              action="patient_action"
+              sequence="10"/>
+
+    <menuitem id="hospital_lab_root"
+              name="Lab"
+              parent="hospital.hospital_root"
+              sequence="10"/>
+
+    <menuitem id="hospital_lab_data"
+              name="Labs"
+              parent="hospital.hospital_lab_root"
+              action="lab_action"
+              sequence="10"/>
+
+    <menuitem id="hospital_lab_records"
+              name="Lab Records"
+              parent="hospital.hospital_lab_root"
+              action="lab_record_action"
+              sequence="10"/>
+
+    <menuitem id="hospital_room_root"
+              name="room"
+              parent="hospital.hospital_root"
+              action="room_action"
+              sequence="10"/>
+
+    <menuitem id="hospital_appointment_root"
+              name="Appointment"
+              parent="hospital.hospital_root"
+              sequence="10"/>
+
+    <menuitem id="hospital_appointment"
+              name="Appointment Records"
+              parent="hospital_appointment_root"
+              action="appointment_action"
+              sequence="10"/>
+
+    <menuitem id="hospital_ent"
+              name="Create Appointment"
+              parent="hospital_appointment_root"
+              action="create_appointment_wizard"
+              sequence="20"/>
+
+    <menuitem id="print"
+              name="Print Appointment Record"
+              parent="hospital_appointment_root"
+              action="print_appointment"
+              sequence="20"/>
+
+    <menuitem id="hospital_bill"
+              name="Bill"
+              parent="hospital.hospital_root"
+              action="bill_action"
+              sequence="10"/>
+
+    <!--    <menuitem id="hospital_email"-->
+    <!--              name="Send Email"-->
+    <!--              parent="hospital.hospital_root"-->
+    <!--              action="email_action"-->
+    <!--              sequence="10"/>-->
+
+</odoo>

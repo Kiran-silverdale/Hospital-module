@@ -12,6 +12,7 @@
                 <field name="disease"/>
                 <field name="state"/>
                 <field name="doctor_id"/>
+                <field name="room_id"/>
                 <field name="appointment_date"/>
                 <field name="note"/>
             </tree>
@@ -50,11 +51,13 @@
                             <field name="doctor_id" options="{'no_create':True}"/>
 <!--                            <field name="doctor_ids" widget="many2many_tags"/>-->
                             <field name="age"/>
+                            <field name="lab_test_id"/>
                         </group>
                         <group>
                             <field name="gender"/>
                             <field name="disease"/>
                             <field name="appointment_date"/>
+                            <field name="room_id"/>
                         </group>
                     </group>
                     <notebook>
@@ -164,28 +167,4 @@
         </field>
     </record>
 
-    <menuitem id="hospital_root"
-              name="Hospital"
-              sequence="10"/>
-    <menuitem id="hospital_appointment_root"
-              name="Appointments"
-              parent="hospital_root"
-              sequence="10"/>
-    <menuitem id="hospital_appointment"
-              name="Appointment"
-              parent="hospital_appointment_root"
-              action="appointment_action"
-              sequence="10"/>
-
-    <menuitem id="hospital_ent"
-              name="Create Appointment"
-              parent="hospital_appointment_root"
-              action="create_appointment_wizard"
-              sequence="20"/>
-
-    <menuitem id="print"
-              name="Print Appointment Record"
-              parent="hospital_appointment_root"
-              action="print_appointment"
-              sequence="20"/>
 </odoo>

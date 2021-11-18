@@ -7,8 +7,9 @@
         <field name="arch" type="xml">
             <tree sample="1">
                 <field name="room_id"/>
-                <field name="type"/>
-                <field name="status"/>
+                <field name="room_type"/>
+                <field name="room_charges"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -18,14 +19,22 @@
         <field name="model">hospital.room</field>
         <field name="arch" type="xml">
             <form sample="1">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible=""/>
+                    <button id="button_vacant" name="action_vacant" string="Mark as vacant"
+                            confirm="Are you sure you want to vacant the room??"
+                            type="object" class="btn-primary" states="occupied"/>
+                    <button id="button_occupy" name="action_occupy" string="Occupied"
+                            type="object" class="btn-primary" states="vacant"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="room_id"/>
-                            <field name="type"/>
+                            <field name="room_charges"/>
                         </group>
                         <group>
-                            <field name="status"/>
+                            <field name="room_type"/>
                         </group>
                     </group>
                 </sheet>
@@ -37,21 +46,7 @@
             </form>
         </field>
     </record>
-    <record id="room_search" model="ir.ui.view">
-        <field name="name">hospital.room.search</field>
-        <field name="model">hospital.room</field>
-        <field name="arch" type="xml">
-            <search string="Rooms">
-                <field name="room_id"/>
-                <field name="type"/>
-                <field name="status"/>
-                <group expand="0" string="Group By">
-                    <filter string="Room Type" name="type" context="{'group_by': 'type'}"/>
-                    <filter string="Room status" name="status" context="{'group_by': 'status'}"/>
-                </group>
-            </search>
-        </field>
-    </record>
+
     <record id="room_action" model="ir.actions.act_window">
         <field name="name">Rooms</field>
         <field name="type">ir.actions.act_window</field>
@@ -63,15 +58,5 @@
             </p>
         </field>
     </record>
-    <menuitem id="hospital_root"
-              name="Hospital"
-              sequence="10"/>
-
-    <menuitem id="hospital_room_root"
-              name="rooms"
-              parent="hospital_root"
-              action="room_action"
-              sequence="10"/>
-
 
 </odoo>

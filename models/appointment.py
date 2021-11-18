@@ -11,7 +11,9 @@ class HospitalAppointments(models.Model):
     appointment_date = fields.Date(string="Appointment Date")
 
     doctor_id = fields.Many2one('hospital.doctor', string="Doctor Name", tracking=True)
-    doctor_ids = fields.Many2many('hospital.doctor', string="Doctors")
+    room_id = fields.Many2one('hospital.room', string="Room No.", tracking=True)
+    lab_test_id = fields.Many2one('hospital.lab.record', string="Lab test", domain="[('patient_id', '=', patient_id)]")
+    #doctor_ids = fields.Many2many('hospital.doctor', string="Doctors")
     age = fields.Integer(string='Age', tracking=True, related="patient_id.age", readonly=True)
     gender = fields.Selection(string='Gender', tracking=True, related="patient_id.gender", readonly=True)
     # gender = fields.Selection([
@@ -48,6 +50,7 @@ class HospitalAppointments(models.Model):
 
     def action_draft(self):
         self.state = 'draft'
+
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):

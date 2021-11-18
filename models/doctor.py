@@ -9,6 +9,7 @@ class HospitalDoctors(models.Model):
 
     name = fields.Char(string='Name', required=True)
     age = fields.Integer(string='Age')
+    charges = fields.Integer(string='Charges', default=1000)
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),

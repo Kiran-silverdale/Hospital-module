@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="lab_record_tree" model="ir.ui.view">
+        <field name="name">hospital.lab.record.tree</field>
+        <field name="model">hospital.lab.record</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="test_id"/>
+                <field name="test_date"/>
+                <field name="patient_id"/>
+                <field name="gender"/>
+                <field name="disease"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="lab_record_form" model="ir.ui.view">
+        <field name="name">hospital.lab.record.form</field>
+        <field name="model">hospital.lab.record</field>
+        <field name="arch" type="xml">
+            <form sample="1">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible=""/>
+
+                    <button id="button_draft" name="action_draft" string="Move to draft"
+                            type="object" class="btn-primary" states="sample"/>
+                    <button id="button_sample" name="action_sample" string="Sample Collected"
+                            confirm="Are you sure you have collected the sample?"
+                            type="object" class="btn-primary" states="draft"/>
+                    <button id="button_test" name="action_test" string="Test Conducted"
+                            type="object" class="btn-primary" states="sample"/>
+                    <button id="button_done" name="action_done" string="Done"
+                            type="object" class="btn-primary" states="test"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel"
+                            confirm="Do you really want to cancel?"
+                            type="object" states="draft,sample"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="test_id" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="gender"/>
+                            <field name="Amount"/>
+                        </group>
+                        <group>
+                            <field name="test_date"/>
+                            <field name="age"/>
+                            <field name="disease"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Patients Notes">
+                            <field name="note"/>
+                        </page>
+                        <page string="Other Info">
+                            <field name="address"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="lab_record_action" model="ir.actions.act_window">
+        <field name="name">Lab Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.lab.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create your first Report!
+            </p>
+        </field>
+    </record>
+
+</odoo>

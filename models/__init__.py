@@ -8,3 +8,4 @@ from . import room
 from . import bill
 from . import appointment
 from . import email
+from . import lab_records
